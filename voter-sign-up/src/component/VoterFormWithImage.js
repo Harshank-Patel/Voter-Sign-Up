@@ -150,12 +150,8 @@ function VoterFormWithImage() {
 
 
 
-
-
             setLoading(false);
-
-            // Enable the download button after the image is generated
-            setIsDownloadEnabled(true);
+            downloadPDF();
         };
 
         img.onerror = () => {
@@ -411,22 +407,12 @@ function VoterFormWithImage() {
                 </div>
 
                 <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-                    {loading ? 'Generating Image...' : 'Submit'}
+                    {loading ? 'Generating PDF' : 'Submit'}
                 </button>
             </form>
 
             {/* Hidden canvas */}
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
-
-            <div className="text-center mt-4">
-                <button
-                    className="btn btn-success"
-                    onClick={downloadPDF}
-                    disabled={!isDownloadEnabled || loading}  // Disable when loading or until Submit is clicked
-                >
-                    Download as PDF
-                </button>
-            </div>
         </div>
     );
 }
