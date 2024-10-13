@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TX Voter Registration",
+  "name": "Texas Voter Registration Application",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Texas_flag_map.svg/1228px-Texas_flag_map.svg.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Texas_flag_map.svg/1228px-Texas_flag_map.svg.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Texas_flag_map.svg/1228px-Texas_flag_map.svg.png",
       "type": "image/png",
       "sizes": "512x512"
     }

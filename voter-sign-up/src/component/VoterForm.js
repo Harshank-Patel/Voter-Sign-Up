@@ -1,7 +1,9 @@
-import React, { useRef, useState } from 'react';
-import { jsPDF } from 'jspdf';  // Import jsPDF
+import { jsPDF } from 'jspdf';
 import { useDispatch } from 'react-redux';
-import { addVoter } from '../redux/voterSlice';  // Action to add voter to the list
+import { uploadToS3 } from '../aws/s3Uploader';
+import { addVoter } from '../redux/voterSlice';
+import React, { useRef, useState } from 'react';
+
 
 function VoterForm() {
     const [lastName, setLastName] = useState('');
@@ -161,7 +163,7 @@ function VoterForm() {
     };
 
     // Function to download the canvas content as a PDF
-    const downloadPDF = () => {
+    const downloadPDF = async () => {
         const canvas = canvasRef.current;
 
         // Convert canvas to image data
@@ -173,8 +175,22 @@ function VoterForm() {
         // Add the canvas image to the PDF
         pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
 
-        // Save the PDF
-        pdf.save(`${firstName}-${lastName}.pdf`);
+        // Convert the PDF to a Blob for uploading
+        const pdfBlob = new Blob([pdf.output('blob')], { type: 'application/pdf' });
+
+        // Generate a file name based on the form data
+        const fileName = `${firstName}-${lastName}_${id}.pdf`;
+
+        // Save the PDF locally
+        pdf.save(fileName);
+
+        // Start S3 upload
+        try {
+            const s3Url = await uploadToS3(pdfBlob, fileName, county);
+            console.log("Upload complete! File URL: " + s3Url);  // Show pop-up on completion
+        } catch (error) {
+            console.error("Error uploading file: " + error.message);
+        }
     };
 
     return (
