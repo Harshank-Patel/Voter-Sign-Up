@@ -184,7 +184,7 @@ function VoterForm() {
                 alt="Texas Flag Map"
                 className="img-small"
             />
-            <h1 className="text-center mb-4">Texas Voting Registration Form</h1>
+            <h1 className="text-center mb-4">Texas Voter Registration Form</h1>
             <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
                 <div className="row">
                     <div className="col-md-4 mb-3">  {/* Use col-md-4 to fit three fields in one row */}
