@@ -1,29 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-function VoterList() {
-    const voters = useSelector((state) => state.voter.voters);
+const VoterList = () => {
+    const voterList = useSelector((state) => state.voters.voterList);
 
     return (
         <div className="container mt-5">
-            <h2 className="text-center mb-4">Voter List</h2>
-            {voters.length === 0 ? (
-                <p className="text-center">No voters added yet.</p>
-            ) : (
-                <ul className="list-group">
-                    {voters.map((voter, index) => (
-                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>Name:</strong> {voter.name} <br />
-                                <strong>Email:</strong> {voter.email} <br />
-                                <strong>Age:</strong> {voter.age}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <h4 className="text-center mb-4">Voter List</h4>
+            <ul className="list-group">
+                {voterList.map((voter, index) => (
+                    <li key={index} className="list-group-item">
+                        <strong>Last Name:</strong> {voter.lastName} | <strong>First Name:</strong> {voter.firstName} | <strong>Address:</strong> {voter.address}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
-}
+};
 
 export default VoterList;

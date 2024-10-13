@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import voterReducer from './voterSlice';  // Make sure this import is correct
+import voterReducer from './voterSlice';
 
 const store = configureStore({
     reducer: {
-        voter: voterReducer,  // This references the imported voterReducer
+        voters: voterReducer,  // Make sure it's 'voters' to match the slice name
     },
 });
 

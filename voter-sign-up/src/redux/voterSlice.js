@@ -1,16 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+    voterList: [],  // Ensure voterList exists in the initial state
+};
+
 const voterSlice = createSlice({
-    name: 'voter',
-    initialState: {
-        voters: [],
-    },
+    name: 'voters',
+    initialState,
     reducers: {
         addVoter: (state, action) => {
-            // Adds the entire voter object (with name, email, etc.) to the state
-            console.log(state, "state object");
-            console.log(action, "action object");
-            state.voters.push(action.payload);
+            state.voterList.push(action.payload);
         },
     },
 });
