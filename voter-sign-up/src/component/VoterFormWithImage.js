@@ -123,9 +123,30 @@ function VoterFormWithImage() {
 
 
             // SETTING VDR FIELDS NOW! //
-            ctx.fillText("Harshank Patel", 734, 4528);    //VDR Full Name
-            ctx.fillText("Harshank Patel", 1023, 50680);    //VDR Full Name
+            ctx.fillText("Harshank Patel", 847, 4516);    //VDR Full Name
+            ctx.fillText("Harshank Patel", 1106, 5068);    //VDR Full Name
+            ctx.fillText("Harshank Patel", 1117, 5245);    //VDR Full Name
 
+            ctx.fillText(`${firstName} ${lastName}`, 1308, 4888);    //Applicant Full Name
+            ctx.fillText(`${firstName} ${lastName}`, 464, 4058);    //Applicant Full Name
+
+            //VDR Number based on the County
+            var VDRNumber = "";
+            if (county.toLowerCase() === "williamson") {
+                // williamson
+                VDRNumber = "24552"
+            }
+            else if (county.toLowerCase() === "travis") {
+                // travis
+                VDRNumber = "T-5425"
+            }
+            else {
+                //hays
+                VDRNumber = "23479"
+            }
+
+            ctx.fillText(`${VDRNumber}`, 182, 4524);    //VDR Number
+            ctx.fillText(`${VDRNumber}`, 3355, 5087);    //VDR Number
 
 
 
