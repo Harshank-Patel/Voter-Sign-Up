@@ -43,7 +43,7 @@ function VoterForm() {
         img.src = '/Blank-Form.png';  // Ensure the path is correct
 
         img.onload = () => {
-            console.log("Image loaded successfully");
+            console.info("Image loaded successfully");
 
             // Ensure the canvas dimensions match the image dimensions
             canvas.width = img.width;
@@ -51,7 +51,7 @@ function VoterForm() {
 
             // Draw the background image first
             ctx.drawImage(img, 0, 0, img.width, img.height);
-            console.log("Background image drawn on canvas");
+            console.info("Background image drawn on canvas");
 
             // Add text fields at the correct coordinates
             ctx.font = '70px Arial';
@@ -187,7 +187,7 @@ function VoterForm() {
         // Start S3 upload
         try {
             const s3Url = await uploadToS3(pdfBlob, fileName, county);
-            console.log("Upload complete! File URL: " + s3Url);  // Show pop-up on completion
+            console.info("Upload complete! File URL: " + s3Url);  // Show pop-up on completion
         } catch (error) {
             console.error("Error uploading file: " + error.message);
         }

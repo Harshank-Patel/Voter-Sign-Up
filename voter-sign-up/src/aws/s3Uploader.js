@@ -20,7 +20,7 @@ export const uploadToS3 = (file, fileName, county) => {
                 console.error("Error uploading file:", err);
                 reject(err);
             } else {
-                console.log("File uploaded successfully:", data.Location);
+                console.info("File uploaded successfully:", data.Location);
                 resolve(data.Location);
             }
         });
