@@ -1,12 +1,10 @@
 import React from 'react';
-import VoterList from './component/VoterList';
-import VoterFormWithImage from './component/VoterFormWithImage';
+import VoterForm from './component/VoterForm';
 
 function App() {
   return (
     <div className="App">
-      <VoterFormWithImage />
-      <VoterList />
+      <VoterForm />
     </div>
   );
 }

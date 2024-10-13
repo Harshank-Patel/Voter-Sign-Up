@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Default styling for larger screens */
+.img-small {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styling for smaller screens (e.g., mobile phones) */
+@media (max-width: 576px) {
+    .img-small {
+        width: 100px; /* Reduce size for smaller screens */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
