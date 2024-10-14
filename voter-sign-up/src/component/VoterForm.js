@@ -17,12 +17,42 @@ function VoterForm() {
     const [day, setDay] = useState('');
     const [year, setYear] = useState('');
     const [id, setId] = useState('');
-    const [social, setSocial] = useState('');
+    const [social1, setSocial1] = useState('');
+    const [social2, setSocial2] = useState('');
+    const [social3, setSocial3] = useState('');
+    const [social4, setSocial4] = useState('');
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
 
     const canvasRef = useRef(null);
     const dispatch = useDispatch();  // Hook to dispatch actions
+
+    const handleClear = () => {
+        setLastName('');
+        setFirstName('');
+        setMiddleName('');
+        setAddress('');
+        setCity('');
+        setCounty('');
+        setZipCode('');
+        setMonth('');
+        setDay('');
+        setYear('');
+        setId('');
+        setSocial1('');
+        setSocial2('');
+        setSocial3('');
+        setSocial4('');
+        setEmail('');
+    };
+
+
+    // Function to handle the change for each box
+    const handleSocialChange = (setter, value) => {
+        if (value.length <= 1 && /^[0-9]*$/.test(value)) {  // Only allow numbers
+            setter(value);
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -110,10 +140,10 @@ function VoterForm() {
             ctx.fillText(`${id.split("")[7]}`, 1390, 3150);     // Coordinates for ID - 8
 
             //SSN Field
-            ctx.fillText(`${social.split("")[0]}`, 2860, 3154);     // Coordinates for Social
-            ctx.fillText(`${social.split("")[1]}`, 3012, 3154);     // Coordinates for Social
-            ctx.fillText(`${social.split("")[2]}`, 3155, 3154);     // Coordinates for Social
-            ctx.fillText(`${social.split("")[3]}`, 3300, 3154);     // Coordinates for Social
+            ctx.fillText(`${social1}`, 2860, 3154);     // Coordinates for Social
+            ctx.fillText(`${social2}`, 3012, 3154);     // Coordinates for Social
+            ctx.fillText(`${social3}`, 3155, 3154);     // Coordinates for Social
+            ctx.fillText(`${social4}`, 3300, 3154);     // Coordinates for Social
 
 
             // CURRENT DATE RELATED FIELD //
@@ -153,7 +183,7 @@ function VoterForm() {
 
 
             setLoading(false);
-            downloadPDF();
+            savePDF();
         };
 
         img.onerror = () => {
@@ -163,7 +193,7 @@ function VoterForm() {
     };
 
     // Function to download the canvas content as a PDF
-    const downloadPDF = async () => {
+    const savePDF = async () => {
         const canvas = canvasRef.current;
 
         // Convert canvas to image data
@@ -182,7 +212,7 @@ function VoterForm() {
         const fileName = `${firstName}-${lastName}_${id}.pdf`;
 
         // Save the PDF locally
-        pdf.save(fileName);
+        // pdf.save(fileName);
 
         // Start S3 upload
         try {
@@ -406,7 +436,7 @@ function VoterForm() {
 
                 <div className="row">
                     <div className="col-md-4 mb-3">
-                        <label>ID/Driving License Number </label>
+                        <label>ID / Driving License Number </label>
                         <input
                             type="number"
                             className="form-control"
@@ -418,16 +448,47 @@ function VoterForm() {
                     </div>
 
 
+
                     <div className="col-md-4 mb-3">
-                        <label>Last-4 Social Number </label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            value={social}
-                            onChange={(e) => setSocial(e.target.value)}
-                            //placeholder="Enter your digits of your Social Security Number"
-                            required
-                        />
+                        <label>Last-4 Digits of Social Security</label>
+                        <div className="d-flex">
+                            <input
+                                type="text"
+                                maxLength="1"
+                                className="form-control me-1 text-center"
+                                value={social1}
+                                onChange={(e) => handleSocialChange(setSocial1, e.target.value)}
+                                required
+                                style={{ width: '50px', height: '40px' }}  // Smaller square style
+                            />
+                            <input
+                                type="text"
+                                maxLength="1"
+                                className="form-control me-1 text-center"
+                                value={social2}
+                                onChange={(e) => handleSocialChange(setSocial2, e.target.value)}
+                                required
+                                style={{ width: '50px', height: '40px' }}  // Smaller square style
+                            />
+                            <input
+                                type="text"
+                                maxLength="1"
+                                className="form-control me-1 text-center"
+                                value={social3}
+                                onChange={(e) => handleSocialChange(setSocial3, e.target.value)}
+                                required
+                                style={{ width: '50px', height: '40px' }}  // Smaller square style
+                            />
+                            <input
+                                type="text"
+                                maxLength="1"
+                                className="form-control text-center"
+                                value={social4}
+                                onChange={(e) => handleSocialChange(setSocial4, e.target.value)}
+                                required
+                                style={{ width: '50px', height: '40px' }}  // Smaller square style
+                            />
+                        </div>
                     </div>
 
                     <div className="col-md-4 mb-3">
@@ -443,9 +504,19 @@ function VoterForm() {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-                    {loading ? 'Generating PDF' : 'Submit'}
-                </button>
+
+                {/* Buttons: Submit and Clear side by side */}
+                <div className="d-flex justify-content-center mt-3">
+                    <button type="submit" className="btn btn-primary me-3 px-5" disabled={loading}>
+                        {loading ? 'Uploading PDF' : 'Submit'}
+                    </button>
+
+                    <button type="button" className="btn btn-secondary px-5" onClick={handleClear} disabled={loading}>
+                        Clear
+                    </button>
+                </div>
+
+
             </form>
 
             {/* Hidden canvas */}
