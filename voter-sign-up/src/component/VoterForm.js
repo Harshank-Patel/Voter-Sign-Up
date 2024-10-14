@@ -216,8 +216,8 @@ function VoterForm() {
 
         // Start S3 upload
         try {
+            handleClear();
             const s3Url = await uploadToS3(pdfBlob, fileName, county);
-            console.info("Upload complete! File URL: " + s3Url);  // Show pop-up on completion
         } catch (error) {
             console.error("Error uploading file: " + error.message);
         }
@@ -256,7 +256,7 @@ function VoterForm() {
                         />
                     </div>
                     <div className="col-md-4 mb-3">  {/* Use col-md-4 for Middle Name */}
-                        <label>Middle Name</label>
+                        <label>Middle Name (Optional)</label>
                         <input
                             type="text"
                             className="form-control"
