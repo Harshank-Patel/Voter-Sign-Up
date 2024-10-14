@@ -507,11 +507,11 @@ function VoterForm() {
 
                 {/* Buttons: Submit and Clear side by side */}
                 <div className="d-flex justify-content-center mt-3">
-                    <button type="submit" className="btn btn-primary me-3 px-5" disabled={loading}>
+                    <button type="submit" className="btn btn-success me-3 px-5" disabled={loading}>
                         {loading ? 'Uploading PDF' : 'Submit'}
                     </button>
 
-                    <button type="button" className="btn btn-secondary px-5" onClick={handleClear} disabled={loading}>
+                    <button type="button" className="btn btn-danger px-5" onClick={handleClear} disabled={loading}>
                         Clear
                     </button>
                 </div>
