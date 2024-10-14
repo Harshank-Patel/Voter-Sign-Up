@@ -4,7 +4,7 @@ import React from 'react';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.min.css';  // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
 
 
