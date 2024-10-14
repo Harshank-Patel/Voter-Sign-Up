@@ -7,6 +7,10 @@ const s3 = new AWS.S3({
 });
 
 export const uploadToS3 = (file, fileName, county) => {
+
+    console.log("Access Key ID: ", process.env.REACT_APP_S3_ACCESS_KEY_ID);
+    console.log("Secret Access Key: ", process.env.REACT_APP_S3_SECRET_ACCESS_KEY);
+    console.log("Region: ", process.env.REACT_APP_S3_REGION);
     const params = {
         Bucket: 'voter-forms',  // Replace with your S3 bucket name
         Key: `${county}/${fileName}`, // Store the file in a folder named 'voter-pdfs'
