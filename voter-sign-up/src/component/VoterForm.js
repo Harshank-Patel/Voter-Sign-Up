@@ -230,6 +230,20 @@ function VoterForm() {
                 alt="Texas Flag Map"
                 className="img-small"
             />
+
+            {/* Add the description here with larger text and line spacing */}
+            <div className="intro-text text-center mb-4" style={{ fontSize: '19px', lineHeight: '1.6em', padding: '0 20px' }}>
+                <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>Welcome to the Texas Voter Registration Portal</h2>
+                <p>
+                    This website simplifies voter registration for selective Texas counties, making it easier and more accessible for everyone to register to vote.
+                    Whether you're in Williamson, Travis, or Hays County, we've streamlined the process to help you complete and submit your registration quickly and securely.
+                </p>
+                <p>
+                    Fill out the form below, and our system will generate and upload your registration form directly to a secure location, ready for submission.
+                </p>
+            </div>
+
+
             <h1 className="text-center mb-4">Texas Voter Registration Form</h1>
             <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
                 <div className="row">
